@@ -84,6 +84,9 @@ lint/outputs/
 lint/tmp/
 # lint/reports/
 
+
+#project things
 node_modules/
 package-lock.json
 package.json
+.env
