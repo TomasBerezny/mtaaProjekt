@@ -16,11 +16,14 @@ const groupsRoute = require('./routes/groups');
 const activitiesRoute = require('./routes/activities');
 const invitesRoute = require('./routes/invites');
 const categoryRoute = require('./routes/categories');
+const authRoute = require('./routes/auth');
+
 app.use('/users', usersRoute);
 app.use('/activities', activitiesRoute);
 app.use('/groups', groupsRoute);
 app.use('/invites', invitesRoute);
 app.use('/categories', categoryRoute);
+app.use('/auth', authRoute);
 
 //routes
 
