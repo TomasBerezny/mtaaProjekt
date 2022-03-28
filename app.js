@@ -12,9 +12,13 @@ mongoose.connect(
 
 //Routes
 const usersRoute = require('./routes/users');
+const groupsRoute = require('./routes/groups');
 const activitiesRoute = require('./routes/activities');
+const invitesRoute = require('./routes/invites');
 app.use('/users', usersRoute);
 app.use('/activities', activitiesRoute);
+app.use('/groups', groupsRoute);
+app.use('/invites', invitesRoute);
 
 //routes
 
