@@ -10,8 +10,11 @@ mongoose.connect(
     () => console.log('connected to db')
     )
 
+//Routes
 const usersRoute = require('./routes/users');
+const activitiesRoute = require('./routes/activities');
 app.use('/users', usersRoute);
+app.use('/activities', activitiesRoute);
 
 //routes
 
