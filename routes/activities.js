@@ -7,7 +7,7 @@ router.get('/', async(req, res) => {
         const activities = await Activity.find();
         res.json(activities);
     } catch (err){
-        res.json({message: err});
+        res.status(404).json({message: err});
     }
 });
 
@@ -16,7 +16,7 @@ router.get('/:activityId', async(req, res) => {
         const activity = await Activity.find({_id: req.params.activityId});
         res.json(activity);
     } catch (err){
-        res.json({message: err});
+        res.status(404).json({message: err});
     }
 });
 
@@ -35,7 +35,7 @@ router.post('/', async(req, res) => {
         const newActivity = await activity.save();
         res.json(newActivity);
     } catch (err){
-        res.json({message: err});
+        res.status(400).json({message: err});
     }
 });
 
@@ -44,7 +44,7 @@ router.delete('/:activityId', async(req, res) => {
         const activity = await Activity.remove({_id: req.params.activityId});
         res.json(activity);
     } catch (err){
-        res.json({message: err});
+        res.status(400).json({message: err});
     }
 });
 

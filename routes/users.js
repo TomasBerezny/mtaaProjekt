@@ -8,7 +8,7 @@ router.get('/', async(req,res) => {
         const users = await User.find()
         res.json(users)
     } catch (err){
-        res.json({message: err})
+        res.status(404).json({message: err})
     }
 });
 
@@ -17,7 +17,7 @@ router.get('/:userId', async (req, res) => {
         const user = await User.find({_id:req.params.userId});
         res.json(user);
     } catch (err) {
-        res.json({message: err})
+        res.status(404).json({message: err})
     }
 })
 
@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
         const savedUser = await user.save();
         res.json(savedUser);
     } catch (err) {
-        res.json({message: err});
+        res.status(400).json({message: err});
     }
 });
 
@@ -45,7 +45,7 @@ router.delete('/:userId', async (req, res) => {
         const removeUser = await User.remove({_id:req.params.userId});
         res.json(removeUser);
     } catch (err) {
-        res.json({message: err})
+        res.status(400).json({message: err})
     }
 })
 
