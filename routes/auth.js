@@ -13,7 +13,7 @@ router.post('/login', async (req, res) => {
             username: loginParams.username
         });
         if(savedUser.password == loginParams.password){
-            res.status(200).json({"message": "Success"});
+            res.status(200).json(savedUser);
         }
         else{
             res.status(404).json({"message": "Could not authenticate user"});
