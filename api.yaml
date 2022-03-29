@@ -86,6 +86,3 @@ paths:
             properties:
               message:
                 type: string
-      
-
-  
