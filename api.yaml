@@ -567,6 +567,33 @@ paths:
             properties:
               message:
                 type: string
+    delete:
+      tags:
+        - "Group"
+      parameters:
+        - in: path
+          name: groupId
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Succesfully deletes one act"
+          schema:
+            type: object
+            properties:
+              acknowledged:
+                type: boolean
+              deletedCount:
+                type: integer
+        "404":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
   /invites:
     post:
       tags:
@@ -811,6 +838,166 @@ paths:
               deletedCount:
                 type: integer
         "400":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  /users/activity/{activityId}:
+    get:
+      tags:
+        - "User"
+      parameters:
+        - in: path
+          name: activityId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Succesfully gets all users of the provided activity"
+          schema:
+            type: object
+            properties:
+              _id:
+                type: string
+              username:
+                type: string
+              password:
+                type: string
+              first_name:
+                type: string
+              last_name:
+                type: string
+              profile_photo_path:
+                type: string
+              bio:
+                type: string
+              phone_number:
+                type: string
+              __v:
+                type: integer
+        "404":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  /users/group/{groupId}:
+    get:
+      tags:
+        - "User"
+      parameters:
+        - in: path
+          name: groupId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Succesfully gets all users of the provided group"
+          schema:
+            type: object
+            properties:
+              _id:
+                type: string
+              username:
+                type: string
+              password:
+                type: string
+              first_name:
+                type: string
+              last_name:
+                type: string
+              profile_photo_path:
+                type: string
+              bio:
+                type: string
+              phone_number:
+                type: string
+              __v:
+                type: integer
+        "404":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  /groups/user/{userId}:
+    get:
+      tags:
+        - "Group"
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Succesfully gets all groups of the provided user"
+          schema:
+            type: object
+            properties:
+              _id:
+                type: string
+              name:
+                type: string
+              profile_photo_path:
+                type: Date
+              bio:
+                type: string
+              __v:
+                type: string
+        "404":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  /activities/group/{groupId}:
+    get:
+      tags:
+        - "Activity"
+      parameters:
+        - in: path
+          name: groupId
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Succesfully gets activities of provided group"
+          schema:
+            type: object
+            properties:
+              _id:
+                type: string
+              category_id:
+                type: string
+              date:
+                type: Date
+              place:
+                type: string
+              share_phone:
+                type: Boolean
+              as_group:
+                type: Boolean
+              user_id:
+                type: string
+              group_id:
+                type: string
+              description:
+                type: string
+              __v:
+                type: string
+        "404":
           description: Returns error
           schema:
             type: object
