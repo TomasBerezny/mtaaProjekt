@@ -146,7 +146,7 @@ paths:
                 type: string
               __v:
                 type: string
-        "404":
+        "400":
           description: Returns error
           schema:
             type: object
@@ -173,7 +173,115 @@ paths:
                 type: boolean
               deletedCount:
                 type: integer
+        "400":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  /auth/login:
+    get:
+      tags:
+        - "Auth"
+      parameters:
+        - in: body
+          name: userCredentials
+          description: Log in user.
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+      responses:
+        "200":
+          description: "Succesfully log in User"
+          schema:
+            type: object
+            properties:
+              _id:
+                type: integer
+              username:
+                type: string
+              password:
+                type: string
+              first_name:
+                type: string
+              last_name:
+                type: string
+              profile_photo_path:
+                type: string
+              bio:
+                type: string
+              phone_number:
+                type: string
+              __v:
+                type: string
+        "400":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
         "404":
+        description: Returns error
+        schema:
+            type: object
+            properties:
+              message:
+                type: string
+  /auth/register:
+    post:
+      tags:
+        - "Auth"
+      parameters:
+        - in: body
+          name: userInfo
+          description: Log in user.
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+              first_name:
+                type: string
+              last_name:
+                type: string
+      responses:
+        "201":
+          description: "Succesfully log in User"
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+              first_name:
+                type: string
+              last_name:
+                type: string
+              profile_photo_path:
+                type: string
+              bio:
+                type: string
+              phone_number:
+                type: string
+              __v:
+                type: string
+        "406":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        "500":
           description: Returns error
           schema:
             type: object
