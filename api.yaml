@@ -1,0 +1,91 @@
+swagger: "2.0"
+info:
+  description: "Kde si kamos dokumentacia nasej api"
+  version: "1.0.0"
+  title: "Kde si kamos Api"
+  servers:
+    - url: "http://localhost:8000"
+tags:
+- name: "user"
+  description: "Access to Petstore orders"
+paths:
+  /users:
+    get:
+      tags:
+        - "user"
+      responses:
+        "200":
+          description: "Succesfully return array of all users"
+          schema:
+            type: object
+            properties:
+              _id:
+                type: integer
+              username:
+                type: string
+              password:
+                type: string
+              first_name:
+                type: string
+              last_name:
+                type: string
+              profile_photo_path:
+                type: string
+              bio:
+                type: string
+              phone_number:
+                type: string
+              __v:
+                type: string
+        404:
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  /users/{userId}:
+    get:
+      tags:
+        - "user"
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Succesfully one user with provided id"
+          schema:
+            type: object
+            properties:
+              _id:
+                type: integer
+              username:
+                type: string
+              password:
+                type: string
+              first_name:
+                type: string
+              last_name:
+                type: string
+              profile_photo_path:
+                type: string
+              bio:
+                type: string
+              phone_number:
+                type: string
+              __v:
+                type: string
+        "404":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+      
+
+  

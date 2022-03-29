@@ -1,6 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParseer = require('body-parser');
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
 
 const app = express();
 app.use(bodyParseer.json());
@@ -24,6 +27,23 @@ app.use('/groups', groupsRoute);
 app.use('/invites', invitesRoute);
 app.use('/categories', categoryRoute);
 app.use('/auth', authRoute);
+
+
+// const swaggerOptions = {
+//     swaggerDefinition: {
+//         info: {
+//             title: "Kde si kamos Api",
+//             description: "Kde si kamos dokumentacia nasej api",
+//             servers: ["http://localhost:8000"]
+//         }
+//     },
+//     apis: [
+//         "./routes/*.js"
+//     ]
+// };
+
+const swaggerDocs = YAML.load("./api.yaml");
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 //routes
 
