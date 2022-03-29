@@ -6,13 +6,21 @@ info:
   servers:
     - url: "http://localhost:8000"
 tags:
-- name: "user"
-  description: "Access to Petstore orders"
+- name: "User"
+  description: "Access users"
+- name: "Activity"
+  description: "Access activities"
+- name: "Groups"
+  description: "Access group"
+- name: "Categories"
+  description: "Access categories"
+- name: "Auth"
+  description: "Access authentication"
 paths:
   /users:
     get:
       tags:
-        - "user"
+        - "User"
       responses:
         "200":
           description: "Succesfully return array of all users"
@@ -47,7 +55,7 @@ paths:
   /users/{userId}:
     get:
       tags:
-        - "user"
+        - "User"
       parameters:
         - in: path
           name: userId
@@ -86,6 +94,93 @@ paths:
             properties:
               message:
                 type: string
+    patch:
+      tags:
+        - "User"
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - in: body
+          name: user
+          description: The user to create.
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+              first_name:
+                type: string
+              last_name:
+                type: string
+              bio:
+                type: string
+              phone_number:
+                type: string
+      responses:
+        "200":
+          description: "Succesfully one user with provided id"
+          schema:
+            type: object
+            properties:
+              _id:
+                type: integer
+              username:
+                type: string
+              password:
+                type: string
+              first_name:
+                type: string
+              last_name:
+                type: string
+              profile_photo_path:
+                type: string
+              bio:
+                type: string
+              phone_number:
+                type: string
+              __v:
+                type: string
+        "404":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+    delete:
+      tags:
+        - "User"
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Succesfully deletes one user"
+          schema:
+            type: object
+            properties:
+              acknowledged:
+                type: boolean
+              deletedCount:
+                type: integer
+        "404":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+      
       
 
   
