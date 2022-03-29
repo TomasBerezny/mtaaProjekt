@@ -29,10 +29,6 @@ router.get('/user/:userId', async(req, res) => {
     }
 });
 
-
-
-
-
 router.post('/', async(req, res) => {
     const invite = new Invite({
         group_id: req.body.group_id,
@@ -48,7 +44,7 @@ router.post('/', async(req, res) => {
 
 router.delete('/:inviteId', async(req, res) => {
     try{
-        const invite = await Group.remove({_id: req.params.inviteId});
+        const invite = await Invite.remove({_id: req.params.inviteId});
         res.json(invite);
     } catch (err){
         res.status(404).json({message: err});

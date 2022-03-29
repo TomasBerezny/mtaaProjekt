@@ -34,4 +34,24 @@ router.delete('/:Id', async(req, res) => {
     }
 });
 
+router.get('/user/:userId', async(req, res) => {
+    try{
+        const userGroups = await UserGroup.find({user_id: req.params.userId});
+        res.json(userGroups);
+    } catch (err){
+        res.status(404).json({message: err});
+    }
+});
+
+router.get('/activity/:activityId', async(req, res) => {
+    try{
+        const userGroups = await UserActivity.find({activity_id: req.params.activityId});
+        res.json(userActivites);
+    } catch (err){
+        res.status(404).json({message: err});
+    }
+});
+
+
+
 module.exports = router

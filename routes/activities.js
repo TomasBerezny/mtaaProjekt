@@ -58,6 +58,15 @@ router.get('/user/:userId', async(req, res) => {
     } catch (err) {
         res.status(400).json({message: err});
     }
-})
+});
+
+router.get('/group/:groupId', async(req, res) => {
+    try{
+        let activities = await Activity.find({group_id:req.params.groupId})
+        res.json(activities);
+    } catch (err) {
+        res.status(400).json({message: err});
+    }
+});
 
 module.exports = router

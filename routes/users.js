@@ -2,6 +2,8 @@ const express = require('express');
 const req = require('express/lib/request');
 const router = express.Router();
 const User = require('../models/User');
+const UserGroup = require('../models/UserGroup');
+const UserActivity = require('../models/UserActivity');
 const UserCategory = require('../models/UserCategory');
 const multer = require('multer');
 
@@ -103,8 +105,42 @@ router.delete('/:userId', async (req, res) => {
     } catch (err) {
         res.status(400).json({message: err})
     }
-})
+});
 
+router.get('/group/:groupId', async(req, res) => {
+    try{
+        const userGroups = await UserGroup.find({group_id:req.params.groupId});
+        let users = userGroups.map(user => user.user_id);
+        console.log(users)
+        const newUsers = await User.find({_id: {$in: users}});
+        res.json(newUsers);
+    } catch (err) {
+        res.status(400).json({message: err});
+    }
+});
 
+router.get('/activity/:activityId', async(req, res) => {
+    try{
+        const userActivities = await UserActivity.find({activity_id:req.params.activityId});
+        let users = userActivities.map(user => user.user_id);
+        console.log(users)
+        const newUsers = await User.find({_id: {$in: users}});
+        res.json(newUsers);
+    } catch (err) {
+        res.status(400).json({message: err});
+    }
+});
+
+router.get('/category/:categoryId', async(req, res) => {
+    try{
+        const userCategories = await UserCategory.find({category_id:req.params.categoryId});
+        let users = userCategories.map(user => user.user_id);
+        console.log(users)
+        const newUsers = await User.find({_id: {$in: users}});
+        res.json(newUsers);
+    } catch (err) {
+        res.status(400).json({message: err});
+    }
+});
 
 module.exports = router
