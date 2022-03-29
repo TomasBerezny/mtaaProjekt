@@ -423,6 +423,35 @@ paths:
             properties:
               message:
                 type: string
+  /invites:
+    get:
+      tags:
+        - "Categories"
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Succesfully returns users categories"
+          schema:
+            type: object
+            properties:
+              _id:
+                type: string
+              name:
+                type: string
+              __v:
+                type: integer
+        "400":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
       
       
 
