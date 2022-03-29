@@ -20,6 +20,19 @@ router.get('/:inviteId', async(req, res) => {
     }
 });
 
+router.get('/user/:userId', async(req, res) => {
+    try{
+        const invite = await Invite.find({user_id: req.params.userId});
+        res.json(invite);
+    } catch (err){
+        res.status(404).json({message: err});
+    }
+});
+
+
+
+
+
 router.post('/', async(req, res) => {
     const invite = new Invite({
         group_id: req.body.group_id,
