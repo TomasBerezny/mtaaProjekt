@@ -16,42 +16,13 @@ tags:
   description: "Access categories"
 - name: "Auth"
   description: "Access authentication"
+- name: "Invite"
+  description: "Access invites"
+- name: "UsersActivities"
+  description: "Access usersActivities"
+- name: "UsersGroups"
+  description: "Access usersGroups"
 paths:
-  /users:
-    get:
-      tags:
-        - "User"
-      responses:
-        "200":
-          description: "Succesfully return array of all users"
-          schema:
-            type: object
-            properties:
-              _id:
-                type: string
-              username:
-                type: string
-              password:
-                type: string
-              first_name:
-                type: string
-              last_name:
-                type: string
-              profile_photo_path:
-                type: string
-              bio:
-                type: string
-              phone_number:
-                type: string
-              __v:
-                type: integer
-        404:
-          description: Returns error
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
   /users/{userId}:
     get:
       tags:
@@ -308,37 +279,6 @@ paths:
             properties:
               message:
                 type: string
-    post:
-      tags:
-        - "Categories"
-      parameters:
-        - in: body
-          name: categoryInfo
-          description: Log in user.
-          schema:
-            type: object
-            properties:
-              name:
-                type: string
-      responses:
-        "200":
-          description: "Succesfully creates category"
-          schema:
-            type: object
-            properties:
-              _id:
-                type: string
-              name:
-                type: string
-              __v:
-                type: integer
-        "404":
-          description: Returns error
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
   /categories/{categoryId}:
     get:
       tags:
@@ -368,69 +308,7 @@ paths:
             properties:
               message:
                 type: string
-    delete:
-      tags:
-        - "Categories"
-      parameters:
-        - in: path
-          name: categoryId
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          description: "Succesfully deletes category"
-          schema:
-            type: object
-            properties:
-              acknowledged:
-                type: boolean
-              deletedCount:
-                type: integer
-        "404":
-          description: Returns error
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
   /activities:
-    get:
-      tags:
-        - "Activity"
-      responses:
-        "200":
-          description: "Returns array of all activities"
-          schema:
-            type: object
-            properties:
-              _id:
-                type: string
-              category_id:
-                type: string
-              date:
-                type: Date
-              place:
-                type: string
-              share_phone:
-                type: Boolean
-              as_group:
-                type: Boolean
-              user_id:
-                type: string
-              group_id:
-                type: string
-              description:
-                type: string
-              __v:
-                type: string
-        404:
-          description: Returns error
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
     post:
       tags:
         - "Activity"
@@ -606,31 +484,6 @@ paths:
               message:
                 type: string
   /groups:
-    get:
-      tags:
-        - "Group"
-      responses:
-        "200":
-          description: "Returns array of all groups"
-          schema:
-            type: object
-            properties:
-              _id:
-                type: string
-              name:
-                type: string
-              profile_photo_path:
-                type: Date
-              bio:
-              __v:
-                type: string
-        404:
-          description: Returns error
-          schema:
-            type: object
-            properties:
-              message:
-                type: string
     post:
       tags:
         - "Group"
@@ -708,6 +561,256 @@ paths:
               __v:
                 type: string
         "404":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  /invites:
+    post:
+      tags:
+        - "Invite"
+      parameters:
+        - in: body
+          name: inviteInfo
+          description: The invite to create.
+          schema:
+            type: object
+            properties:
+              group_id:
+                type: string
+              user_id:
+                type: string
+      responses:
+        "200":
+          description: "Succesfully creates invite"
+          schema:
+            type: object
+            properties:
+              group_id:
+                type: string
+              user_id:
+                type: string
+              _id:
+                type: string
+              __v:
+                type: integer
+        "404":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  /invites/{inviteId}:
+    get:
+      tags:
+        - "Invite"
+      parameters:
+        - in: path
+          name: inviteId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Succesfully returns one invite"
+          schema:
+            type: object
+            properties:
+              group_id:
+                type: string
+              user_id:
+                type: string
+              _id:
+                type: string
+              __v:
+                type: integer
+        "404":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+    delete:
+      tags:
+        - "Invite"
+      parameters:
+        - in: path
+          name: inviteId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Succesfully deletes one invite"
+          schema:
+            type: object
+            properties:
+              acknowledged:
+                type: boolean
+              deletedCount:
+                type: integer
+        "404":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  /invites/user/{userId}:
+    get:
+      tags:
+        - "Invite"
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Succesfully returns all users invites"
+          schema:
+            type: object
+            properties:
+              group_id:
+                type: string
+              user_id:
+                type: string
+              _id:
+                type: string
+              __v:
+                type: integer
+        "404":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  /usersActivities:
+    post:
+      tags:
+        - "UsersActivities"
+      parameters:
+        - in: body
+          name: recordInfo
+          description: Create record.
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: string
+              activity_id:
+                type: string
+      responses:
+        "200":
+          description: "Succesfully creates usersActivity record"
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: string
+              activity_id:
+                type: string
+              _id:
+                type: string
+              __v:
+                type: integer
+        "404":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  /usersActivities/{Id}:
+    delete:
+      tags:
+        - "UsersActivities"
+      parameters:
+        - in: path
+          name: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Succesfully deletes usersActivities record"
+          schema:
+            type: object
+            properties:
+              acknowledged:
+                type: boolean
+              deletedCount:
+                type: integer
+        "400":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  /usersGroups:
+    post:
+      tags:
+        - "UsersGroups"
+      parameters:
+        - in: body
+          name: recordInfo
+          description: Create record.
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: string
+              group_id:
+                type: string
+      responses:
+        "200":
+          description: "Succesfully creates usersGroups record"
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: string
+              group_id:
+                type: string
+              _id:
+                type: string
+              __v:
+                type: integer
+        "404":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  /usersGroups/{Id}:
+    delete:
+      tags:
+        - "UsersGroups"
+      parameters:
+        - in: path
+          name: Id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Succesfully deletes usersGroups record"
+          schema:
+            type: object
+            properties:
+              acknowledged:
+                type: boolean
+              deletedCount:
+                type: integer
+        "400":
           description: Returns error
           schema:
             type: object
