@@ -10,7 +10,7 @@ tags:
   description: "Access users"
 - name: "Activity"
   description: "Access activities"
-- name: "Groups"
+- name: "Group"
   description: "Access group"
 - name: "Categories"
   description: "Access categories"
@@ -394,19 +394,224 @@ paths:
             properties:
               message:
                 type: string
-  /categories/user/{userId}:
+  /activities:
     get:
       tags:
-        - "Categories"
+        - "Activity"
+      responses:
+        "200":
+          description: "Returns array of all activities"
+          schema:
+            type: object
+            properties:
+              _id:
+                type: string
+              category_id:
+                type: string
+              date:
+                type: Date
+              place:
+                type: string
+              share_phone:
+                type: Boolean
+              as_group:
+                type: Boolean
+              user_id:
+                type: string
+              group_id:
+                type: string
+              description:
+                type: string
+              __v:
+                type: string
+        404:
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+    post:
+      tags:
+        - "Activity"
+      parameters:
+        - in: body
+          name: activity
+          description: The activity to create.
+          schema:
+            type: object
+            properties:
+              category_id:
+                type: string
+              date:
+                type: Date
+              place:
+                type: string
+              share_phone:
+                type: Boolean
+              as_group:
+                type: Boolean
+              user_id:
+                type: string
+              group_id:
+                type: string
+              description:
+                type: string
+      responses:
+        "200":
+          description: "Succesfully creates one activity with provided id"
+          schema:
+            type: object
+            properties:
+              _id:
+                type: string
+              category_id:
+                type: string
+              date:
+                type: Date
+              place:
+                type: string
+              share_phone:
+                type: Boolean
+              as_group:
+                type: Boolean
+              user_id:
+                type: string
+              group_id:
+                type: string
+              description:
+                type: string
+              __v:
+                type: string
+        "404":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string             
+  /activities/{activityId}:
+    get:
+      tags:
+        - "Activity"
+      parameters:
+        - in: path
+          name: activityId
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Succesfully gets one activity with provided id"
+          schema:
+            type: object
+            properties:
+              _id:
+                type: string
+              category_id:
+                type: string
+              date:
+                type: Date
+              place:
+                type: string
+              share_phone:
+                type: Boolean
+              as_group:
+                type: Boolean
+              user_id:
+                type: string
+              group_id:
+                type: string
+              description:
+                type: string
+              __v:
+                type: string
+        "404":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+    delete:
+      tags:
+        - "Activity"
+      parameters:
+        - in: path
+          name: activityId
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Succesfully deletes one act"
+          schema:
+            type: object
+            properties:
+              acknowledged:
+                type: boolean
+              deletedCount:
+                type: integer
+        "404":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  /activities/user/{userId}:
+    get:
+      tags:
+        - "Activity"
       parameters:
         - in: path
           name: userId
           required: true
           schema:
-            type: string
+            type: integer
+            format: int64
       responses:
         "200":
-          description: "Succesfully returns users categories"
+          description: "Succesfully gets activities of provided user"
+          schema:
+            type: object
+            properties:
+              _id:
+                type: string
+              category_id:
+                type: string
+              date:
+                type: Date
+              place:
+                type: string
+              share_phone:
+                type: Boolean
+              as_group:
+                type: Boolean
+              user_id:
+                type: string
+              group_id:
+                type: string
+              description:
+                type: string
+              __v:
+                type: string
+        "404":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  /groups:
+    get:
+      tags:
+        - "Group"
+      responses:
+        "200":
+          description: "Returns array of all groups"
           schema:
             type: object
             properties:
@@ -414,28 +619,37 @@ paths:
                 type: string
               name:
                 type: string
+              profile_photo_path:
+                type: Date
+              bio:
               __v:
-                type: integer
-        "400":
+                type: string
+        404:
           description: Returns error
           schema:
             type: object
             properties:
               message:
                 type: string
-  /invites:
-    get:
+    post:
       tags:
-        - "Categories"
+        - "Group"
       parameters:
-        - in: path
-          name: userId
-          required: true
+        - in: body
+          name: activity
+          description: The activity to create.
           schema:
-            type: string
+            type: object
+            properties:
+              name:
+                type: string
+              profile_photo_path:
+                type: Date
+              bio:
+                type: string
       responses:
         "200":
-          description: "Succesfully returns users categories"
+          description: "Succesfully creates one group"
           schema:
             type: object
             properties:
@@ -443,16 +657,60 @@ paths:
                 type: string
               name:
                 type: string
+              profile_photo_path:
+                type: Date
+              place:
+                type: string
+              share_phone:
+                type: Boolean
+              as_group:
+                type: Boolean
+              user_id:
+                type: string
+              group_id:
+                type: string
+              description:
+                type: string
               __v:
-                type: integer
-        "400":
+                type: string
+        "404":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string 
+  /groups/{groupId}:
+    get:
+      tags:
+        - "Group"
+      parameters:
+        - in: path
+          name: groupId
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: "Succesfully gets one group with provided id"
+          schema:
+            type: object
+            properties:
+              _id:
+                type: string
+              name:
+                type: string
+              profile_photo_path:
+                type: Date
+              bio:
+                type: string
+              __v:
+                type: string
+        "404":
           description: Returns error
           schema:
             type: object
             properties:
               message:
                 type: string
-      
-      
-
-  
