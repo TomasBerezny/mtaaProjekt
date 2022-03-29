@@ -28,7 +28,7 @@ paths:
             type: object
             properties:
               _id:
-                type: integer
+                type: string
               username:
                 type: string
               password:
@@ -44,7 +44,7 @@ paths:
               phone_number:
                 type: string
               __v:
-                type: string
+                type: integer
         404:
           description: Returns error
           schema:
@@ -61,8 +61,7 @@ paths:
           name: userId
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         "200":
           description: "Succesfully one user with provided id"
@@ -70,7 +69,7 @@ paths:
             type: object
             properties:
               _id:
-                type: integer
+                type: string
               username:
                 type: string
               password:
@@ -86,7 +85,7 @@ paths:
               phone_number:
                 type: string
               __v:
-                type: string
+                type: integer
         "404":
           description: Returns error
           schema:
@@ -102,8 +101,7 @@ paths:
           name: userId
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
         - in: body
           name: user
           description: The user to create.
@@ -129,7 +127,7 @@ paths:
             type: object
             properties:
               _id:
-                type: integer
+                type: string
               username:
                 type: string
               password:
@@ -145,7 +143,7 @@ paths:
               phone_number:
                 type: string
               __v:
-                type: string
+                type: integer
         "400":
           description: Returns error
           schema:
@@ -161,8 +159,7 @@ paths:
           name: userId
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
       responses:
         "200":
           description: "Succesfully deletes one user"
@@ -202,7 +199,7 @@ paths:
             type: object
             properties:
               _id:
-                type: integer
+                type: string
               username:
                 type: string
               password:
@@ -218,7 +215,7 @@ paths:
               phone_number:
                 type: string
               __v:
-                type: string
+                type: integer
         "400":
           description: Returns error
           schema:
@@ -273,7 +270,7 @@ paths:
               phone_number:
                 type: string
               __v:
-                type: string
+                type: integer
         "406":
           description: Returns error
           schema:
@@ -282,6 +279,144 @@ paths:
               message:
                 type: string
         "500":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  /categories:
+    get:
+      tags:
+        - "Categories"
+      responses:
+        "200":
+          description: "Succesfully returns all categories"
+          schema:
+            type: object
+            properties:
+              _id:
+                type: string
+              name:
+                type: string
+              __v:
+                type: integer
+        "404":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+    post:
+      tags:
+        - "Categories"
+      parameters:
+        - in: body
+          name: categoryInfo
+          description: Log in user.
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+      responses:
+        "200":
+          description: "Succesfully creates category"
+          schema:
+            type: object
+            properties:
+              _id:
+                type: string
+              name:
+                type: string
+              __v:
+                type: integer
+        "404":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  /categories/{categoryId}:
+    get:
+      tags:
+        - "Categories"
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Succesfully returns one category"
+          schema:
+            type: object
+            properties:
+              _id:
+                type: string
+              name:
+                type: string
+              __v:
+                type: integer
+        "400":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+    delete:
+      tags:
+        - "Categories"
+      parameters:
+        - in: path
+          name: categoryId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Succesfully deletes category"
+          schema:
+            type: object
+            properties:
+              acknowledged:
+                type: boolean
+              deletedCount:
+                type: integer
+        "404":
+          description: Returns error
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+  /categories/user/{userId}:
+    get:
+      tags:
+        - "Categories"
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Succesfully returns users categories"
+          schema:
+            type: object
+            properties:
+              _id:
+                type: string
+              name:
+                type: string
+              __v:
+                type: integer
+        "400":
           description: Returns error
           schema:
             type: object
