@@ -50,14 +50,12 @@ router.delete('/:groupId', async(req, res) => {
 });
 
 router.get('/user/:userId', async(req, res) => {
-    let groups = [];
     try{
         const userGroups = await UserGroup.find({user_id:req.params.userId});
-        userGroups.forEach(async function(usrGrp) {
-            const group = await Group.findOne({_id:usrGrp.group_id})
-            groups.push(group)
-        res.json(groups);
-        });
+        let groups = userGroups.map(group => group.group_id);
+        console.log(groups)
+        const newGroups = await Group.find({_id: {$in: groups}});
+        res.json(newGroups);
     } catch (err) {
         res.status(400).json({message: err});
     }

@@ -1,5 +1,6 @@
 const express = require('express');
 const Activity = require('../models/Activity');
+const UserActivity = require('../models/UserActivity');
 const router = express.Router();
 
 router.get('/', async(req, res) => {
@@ -47,5 +48,16 @@ router.delete('/:activityId', async(req, res) => {
         res.status(400).json({message: err});
     }
 });
+
+router.get('/user/:userId', async(req, res) => {
+    try{
+        const userActivities = await UserActivity.find({user_id:req.params.userId});
+        let activites = userActivities.map(activity => activity.activity_id);
+        const newActivities = await Activity.find({_id: {$in: activites}});
+        res.json(newActivities);
+    } catch (err) {
+        res.status(400).json({message: err});
+    }
+})
 
 module.exports = router

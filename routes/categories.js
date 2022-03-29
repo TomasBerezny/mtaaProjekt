@@ -44,14 +44,13 @@ router.delete('/:categoryId', async(req, res) => {
 });
 
 router.get('/user/:userId', async(req, res) => {
-    let categories = [];
     try{
         const userCategories = await UserCategory.find({user_id:req.params.userId});
-        userCategories.forEach(async function(usrCat) {
-            const category = await Category.findOne({_id:usrCat.category_id})
-            categories.push(category)
-        res.json(categories);
-        });
+        console.log(userCategories);
+        let categories = userCategories.map(category => category.category_id);
+        console.log(categories)
+        const newCategories = await Category.find({_id: {$in: categories}});
+        res.json(newCategories);
     } catch (err) {
         res.status(400).json({message: err});
     }

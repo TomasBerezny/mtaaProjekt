@@ -12,6 +12,8 @@ mongoose.connect(
 
 //Routes
 const usersRoute = require('./routes/users');
+const usersActivitiesRoute = require('./routes/usersActivities');
+const usersGroupsRoute = require('./routes/usersGroups');
 const groupsRoute = require('./routes/groups');
 const activitiesRoute = require('./routes/activities');
 const invitesRoute = require('./routes/invites');
@@ -19,6 +21,8 @@ const categoryRoute = require('./routes/categories');
 const authRoute = require('./routes/auth');
 
 app.use('/users', usersRoute);
+app.use('/usersActivities', usersActivitiesRoute);
+app.use('/usersGroups', usersGroupsRoute);
 app.use('/activities', activitiesRoute);
 app.use('/groups', groupsRoute);
 app.use('/invites', invitesRoute);

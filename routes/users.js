@@ -38,28 +38,63 @@ router.get('/:userId', async (req, res) => {
 
 
 router.post('/',upload.single('profilePicture'), async (req, res) => {
-    console.log(req.file);
     const user = new User({
         username: req.body.username,
         password: req.body.password,
         first_name: req.body.first_name,
         last_name: req.body.last_name,
-        profile_photo_path: req.file.path,
+        //profile_photo_path: req.file.path,
         bio: req.body.bio,
         phone_number: req.body.phone_number
     });
     try{
         const savedUser = await user.save();
-        const userCategory = new UserCategory({
-            user_id:savedUser.id,
-            category_id:'6241e99a8fbc484eeb864b0d'
-        })
-        await userCategory.save();
         res.json(savedUser);
     } catch (err) {
         res.status(400).json({message: err});
     }
 });
+
+router.patch('/:userId',upload.single('profilePicture'), async (req, res) => {
+    try{
+        let user = await User.findOne({_id:req.params.userId});
+        if(req.body.username != null){
+            user.username = req.body.username;
+            console.log(user.username);
+        }
+        if(req.body.password != null){
+            user.password = req.body.password;
+            console.log("password")
+        }
+        if(req.body.first_name != null){
+            user.first_name = req.body.first_name
+            console.log("firstname")
+        }
+        if(req.body.last_name != null){
+            user.last_name = req.body.last_name
+            console.log("last")
+        }
+        if(req.file != null){
+            user.profile_photo_path = req.file.path
+            console.log("file")
+        }
+        if(req.body.bio != null){
+            user.bio = req.body.bio
+            console.log("bio")
+        }
+        if(req.body.phone_number != null){
+            user.phone_number = req.body.phone_number
+            console.log("phonenumber")
+        }
+        console.log(user)
+        const updatedUser = await user.save();
+        res.json(updatedUser);
+    } catch (err) {
+        res.status(400).json({message: err});
+    }
+});
+
+
 
 router.delete('/:userId', async (req, res) => {
     try{
