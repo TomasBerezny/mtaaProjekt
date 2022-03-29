@@ -1,5 +1,6 @@
 const express = require('express');
 const Group = require('../models/Group');
+const UserGroup = require('../models/UserGroup');
 const router = express.Router();
 
 router.get('/', async(req, res) => {
@@ -28,6 +29,11 @@ router.post('/', async(req, res) => {
         });
     try{
         const newGroup = await group.save();
+        const userGroup = new UserGroup({
+            user_id:req.body.user_id,
+            group_id:newGroup._id
+        })
+        await userGroup.save();
         res.json(newGroup);
     } catch (err){
         res.status(404).json({message: err});
@@ -42,5 +48,19 @@ router.delete('/:groupId', async(req, res) => {
         res.json({message: err});
     }
 });
+
+router.get('/user/:userId', async(req, res) => {
+    let groups = [];
+    try{
+        const userGroups = await UserGroup.find({user_id:req.params.userId});
+        userGroups.forEach(async function(usrGrp) {
+            const group = await Group.findOne({_id:usrGrp.group_id})
+            groups.push(group)
+        res.json(groups);
+        });
+    } catch (err) {
+        res.status(400).json({message: err});
+    }
+})
 
 module.exports = router

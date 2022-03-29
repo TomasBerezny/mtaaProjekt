@@ -27,6 +27,7 @@ app.use('/groups', groupsRoute);
 app.use('/invites', invitesRoute);
 app.use('/categories', categoryRoute);
 app.use('/auth', authRoute);
+app.use('/uploads', express.static('uploads'));
 
 
 // const swaggerOptions = {
