@@ -30,19 +30,6 @@ app.use('/auth', authRoute);
 app.use('/uploads', express.static('uploads'));
 
 
-// const swaggerOptions = {
-//     swaggerDefinition: {
-//         info: {
-//             title: "Kde si kamos Api",
-//             description: "Kde si kamos dokumentacia nasej api",
-//             servers: ["http://localhost:8000"]
-//         }
-//     },
-//     apis: [
-//         "./routes/*.js"
-//     ]
-// };
-
 const swaggerDocs = YAML.load("./api.yaml");
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
