@@ -1,8 +1,8 @@
 swagger: "2.0"
 info:
-  description: "Kde si kamos dokumentacia nasej api"
+  description: "github link: https://github.com/TomasBerezny/mtaaProjekt"
   version: "1.0.0"
-  title: "Kde si kamos Api"
+  title: "Kde si kamos API"
   servers:
     - url: "http://localhost:8000"
 tags:
@@ -35,7 +35,7 @@ paths:
             type: string
       responses:
         "200":
-          description: "Succesfully one user with provided id"
+          description: "Succesfully returns one user with provided id"
           schema:
             type: object
             properties:
@@ -75,7 +75,7 @@ paths:
             type: string
         - in: body
           name: user
-          description: The user to create.
+          description: New user attributes.
           schema:
             type: object
             properties:
@@ -93,7 +93,7 @@ paths:
                 type: string
       responses:
         "200":
-          description: "Succesfully one user with provided id"
+          description: "Succesfully returns updated user"
           schema:
             type: object
             properties:
@@ -155,7 +155,7 @@ paths:
       parameters:
         - in: body
           name: userCredentials
-          description: Log in user.
+          description: User's credentials.
           schema:
             type: object
             properties:
@@ -195,8 +195,8 @@ paths:
               message:
                 type: string
         "404":
-        description: Returns error
-        schema:
+          description: Returns error
+          schema:
             type: object
             properties:
               message:
@@ -208,7 +208,7 @@ paths:
       parameters:
         - in: body
           name: userInfo
-          description: Log in user.
+          description: User's attributes.
           schema:
             type: object
             properties:
@@ -222,7 +222,7 @@ paths:
                 type: string
       responses:
         "201":
-          description: "Succesfully log in User"
+          description: "Succesfully register user"
           schema:
             type: object
             properties:
@@ -315,7 +315,7 @@ paths:
       parameters:
         - in: body
           name: activity
-          description: The activity to create.
+          description: The activity's attributes.
           schema:
             type: object
             properties:
@@ -337,7 +337,7 @@ paths:
                 type: string
       responses:
         "200":
-          description: "Succesfully creates one activity with provided id"
+          description: "Succesfully creates activity"
           schema:
             type: object
             properties:
@@ -381,7 +381,7 @@ paths:
             format: int64
       responses:
         "200":
-          description: "Succesfully gets one activity with provided id"
+          description: "Succesfully returns one activity with provided id"
           schema:
             type: object
             properties:
@@ -424,7 +424,7 @@ paths:
             format: int64
       responses:
         "200":
-          description: "Succesfully deletes one act"
+          description: "Succesfully deletes one activity"
           schema:
             type: object
             properties:
@@ -452,7 +452,7 @@ paths:
             format: int64
       responses:
         "200":
-          description: "Succesfully gets activities of provided user"
+          description: "Succesfully returns activities of provided user"
           schema:
             type: object
             properties:
@@ -490,7 +490,7 @@ paths:
       parameters:
         - in: body
           name: activity
-          description: The activity to create.
+          description: The group's attributes.
           schema:
             type: object
             properties:
@@ -502,7 +502,7 @@ paths:
                 type: string
       responses:
         "200":
-          description: "Succesfully creates one group"
+          description: "Succesfully creates group"
           schema:
             type: object
             properties:
@@ -546,7 +546,7 @@ paths:
             format: int64
       responses:
         "200":
-          description: "Succesfully gets one group with provided id"
+          description: "Succesfully returns one group with provided id"
           schema:
             type: object
             properties:
@@ -579,7 +579,7 @@ paths:
             format: int64
       responses:
         "200":
-          description: "Succesfully deletes one act"
+          description: "Succesfully deletes group"
           schema:
             type: object
             properties:
@@ -601,7 +601,7 @@ paths:
       parameters:
         - in: body
           name: inviteInfo
-          description: The invite to create.
+          description: The invite's attributes.
           schema:
             type: object
             properties:
@@ -642,7 +642,7 @@ paths:
             type: string
       responses:
         "200":
-          description: "Succesfully returns one invite"
+          description: "Succesfully returns one invite with provided id"
           schema:
             type: object
             properties:
@@ -672,7 +672,7 @@ paths:
             type: string
       responses:
         "200":
-          description: "Succesfully deletes one invite"
+          description: "Succesfully deletes invite"
           schema:
             type: object
             properties:
@@ -699,7 +699,7 @@ paths:
             type: string
       responses:
         "200":
-          description: "Succesfully returns all users invites"
+          description: "Succesfully returns all user's invites"
           schema:
             type: object
             properties:
@@ -725,7 +725,7 @@ paths:
       parameters:
         - in: body
           name: recordInfo
-          description: Create record.
+          description: Id of user and activity logging into.
           schema:
             type: object
             properties:
@@ -788,7 +788,7 @@ paths:
       parameters:
         - in: body
           name: recordInfo
-          description: Create record.
+          description: Id of user and group logging into.
           schema:
             type: object
             properties:
@@ -856,7 +856,7 @@ paths:
             type: string
       responses:
         "200":
-          description: "Succesfully gets all users of the provided activity"
+          description: "Succesfully returns all users of the provided activity"
           schema:
             type: object
             properties:
@@ -897,7 +897,7 @@ paths:
             type: string
       responses:
         "200":
-          description: "Succesfully gets all users of the provided group"
+          description: "Succesfully returns all users of the provided group"
           schema:
             type: object
             properties:
@@ -939,7 +939,7 @@ paths:
             format: int64
       responses:
         "200":
-          description: "Succesfully gets all groups of the provided user"
+          description: "Succesfully returns all groups of the provided user"
           schema:
             type: object
             properties:
@@ -973,7 +973,7 @@ paths:
             format: int64
       responses:
         "200":
-          description: "Succesfully gets activities of provided group"
+          description: "Succesfully returns activities of provided group"
           schema:
             type: object
             properties:
