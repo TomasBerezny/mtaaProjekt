@@ -1,12 +1,38 @@
 const express = require('express');
 const Activity = require('../models/Activity');
 const UserActivity = require('../models/UserActivity');
+const User = require('../models/User');
+const Category = require('../models/Category');
 const router = express.Router();
+
+
 
 router.get('/', async(req, res) => {
     try{
         const activities = await Activity.find();
         res.json(activities);
+    } catch (err){
+        res.status(404).json({message: err});
+    }
+});
+
+router.get('/home', async(req, res) => {
+    try{
+        let response = [];
+        const activities = await Activity.find();
+
+        for (let i = 0; i < activities.length; i++) {
+            let user = await User.findOne({_id: activities[i].user_id});
+            let category = await Category.findOne({_id: activities[i].category_id});
+            response.push({
+                id:activities[i]._id,
+                profile_pic: user.profile_photo_path,
+                username: user.username,
+                category_name: category.name,
+                description:activities[i].description,
+            });
+          }
+        res.json(response);
     } catch (err){
         res.status(404).json({message: err});
     }

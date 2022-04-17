@@ -3,6 +3,7 @@ const Group = require('../models/Group');
 const UserGroup = require('../models/UserGroup');
 const router = express.Router();
 const multer = require('multer');
+const User = require('../models/User');
 
 
 const storage = multer.diskStorage({
@@ -27,8 +28,17 @@ router.get('/', async(req, res) => {
 
 router.get('/:groupId', async(req, res) => {
     try{
-        const group = await Group.find({_id: req.params.groupId});
-        res.json(group);
+        let group = await Group.findOne({_id: req.params.groupId});
+        const userGroups = await UserGroup.find({group_id:req.params.groupId});
+        let users = userGroups.map(user => user.user_id);
+        const newUsers = await User.find({_id: {$in: users}});
+        var ObjGroup = {
+            _id: group._id,
+            name:group.name,
+            bio:group.bio,
+            users:newUsers
+        }
+        res.json(ObjGroup);
     } catch (err){
         res.status(404).json({message: err});
     }
