@@ -31,6 +31,8 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private val baseUrl = "http://10.0.2.2:8000/"
+
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -55,7 +57,7 @@ class HomeFragment : Fragment() {
 
     fun buildRetrofit() {
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:8000/")
+            .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -85,6 +87,12 @@ class HomeFragment : Fragment() {
     }
 
     fun setRecycler(list:List<ActivityDTO>){
+        for (activity in list){
+            if(activity.profile_pic.isNotBlank()){
+                activity.profile_pic = activity.profile_pic.replace("\\","/")
+                activity.profile_pic = baseUrl + activity.profile_pic
+            }
+        }
         val layoutManager = LinearLayoutManager(this.context)
         binding.rvHome.layoutManager = layoutManager
 

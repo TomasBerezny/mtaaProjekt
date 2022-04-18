@@ -5,6 +5,6 @@ import java.util.*
 data class ActivityDTO(val _id: String,
                     val category_name: String,
                     val username: String,
-                    val profile_pic: String,
+                    var profile_pic: String,
                     val description: String,
                        )

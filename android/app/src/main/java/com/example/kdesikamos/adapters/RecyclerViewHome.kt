@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.kdesikamos.R
 import com.example.kdesikamos.dto.ActivityDTO
 
@@ -16,6 +17,7 @@ class RecyclerViewHome internal constructor(context: Context?, data: List<Activi
     private val mData: List<ActivityDTO>
     private val mInflater: LayoutInflater
     private var mClickListener: ItemClickListener? = null
+    private val mContext: Context?
 
     // inflates the row layout from xml when needed
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,6 +31,8 @@ class RecyclerViewHome internal constructor(context: Context?, data: List<Activi
         holder.tvActivityName.text = activity.category_name
         holder.tvUsername.text = activity.username
         holder.tvDescription.text = activity.description
+
+        Glide.with(mContext!!).load(activity.profile_pic).into(holder.profilePic)
     }
 
     // total number of rows
@@ -76,5 +80,6 @@ class RecyclerViewHome internal constructor(context: Context?, data: List<Activi
     init {
         mInflater = LayoutInflater.from(context)
         mData = data
+        mContext = context
     }
 }
