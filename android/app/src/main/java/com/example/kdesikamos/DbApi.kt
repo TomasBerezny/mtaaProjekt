@@ -1,14 +1,8 @@
 package com.example.kdesikamos
 
-import com.example.kdesikamos.dto.ActivityDTO
-import com.example.kdesikamos.dto.LoginRequest
-import com.example.kdesikamos.dto.RegisterRequest
-import com.example.kdesikamos.dto.UserDTO
+import com.example.kdesikamos.dto.*
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface DbApi {
 
@@ -20,5 +14,8 @@ interface DbApi {
 
     @POST("auth/register")
     fun register(@Body body: RegisterRequest) : Call<UserDTO>
+
+    @PATCH("users/{userId}")
+    fun saveSettings(@Path("userId") userId: String, @Body body: Settings) : Call<UserDTO>
 
 }

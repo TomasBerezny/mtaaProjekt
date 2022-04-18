@@ -1,5 +1,6 @@
 package com.example.kdesikamos.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.kdesikamos.databinding.FragmentProfileBinding
 import com.example.kdesikamos.ui.auth.LoginActivity
+import com.example.kdesikamos.ui.auth.RegisterActivity
 
 class ProfileFragment : Fragment() {
 
@@ -32,6 +34,10 @@ class ProfileFragment : Fragment() {
         val root: View = binding.root
 
         setDetails()
+        binding.btnProfileSettings.setOnClickListener {
+            val intent = Intent(context, SettingsActivity::class.java)
+            startActivity(intent)
+        }
 
         return root
     }
