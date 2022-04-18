@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.kdesikamos.databinding.FragmentDashboardBinding
+import com.example.kdesikamos.databinding.FragmentAddActivityBinding
 
-class DashboardFragment : Fragment() {
+class AddActivityFragment : Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
+    private var _binding: FragmentAddActivityBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -23,20 +23,22 @@ class DashboardFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View {
         val dashboardViewModel =
-                ViewModelProvider(this).get(DashboardViewModel::class.java)
+                ViewModelProvider(this).get(AddActivityViewModel::class.java)
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentAddActivityBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+        saveActivity()
+
         return root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun saveActivity(){
+
     }
 }
