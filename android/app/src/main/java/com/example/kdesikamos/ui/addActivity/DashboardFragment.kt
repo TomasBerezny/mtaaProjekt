@@ -1,4 +1,4 @@
-package com.example.kdesikamos.ui.dashboard
+package com.example.kdesikamos.ui.addActivity
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -21,6 +21,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class LoginActivity : AppCompatActivity() {
 
+    companion object{
+        lateinit var loggedUser: UserDTO
+    }
+
     private lateinit var tvLogin : EditText
     private lateinit var tvPassword : EditText
     private lateinit var btnLogin : Button
@@ -63,7 +67,9 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this@LoginActivity, "Something went wrong", Toast.LENGTH_SHORT)
                     return
                 }
-
+                response.body()?.let {
+                    loggedUser = it
+                }
                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                 startActivity(intent)
             }

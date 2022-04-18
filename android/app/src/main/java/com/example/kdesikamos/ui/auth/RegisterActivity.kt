@@ -68,7 +68,7 @@ class RegisterActivity : AppCompatActivity() {
             override fun onResponse(call: Call<UserDTO>, response: Response<UserDTO>) {
                 if (response.code() == 200){
                     Toast.makeText(this@RegisterActivity, "You can now login", Toast.LENGTH_SHORT)
-                    finish()
+                    this@RegisterActivity.finish()
                 }
                 else if (response.code() == 406){
                     Toast.makeText(this@RegisterActivity, "Chosen username is already in use", Toast.LENGTH_SHORT)
