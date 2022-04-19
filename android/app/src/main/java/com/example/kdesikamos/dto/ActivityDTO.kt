@@ -7,4 +7,5 @@ data class ActivityDTO(val _id: String,
                     val username: String,
                     var profile_pic: String,
                     val description: String,
+                       val date: Date,
                        )

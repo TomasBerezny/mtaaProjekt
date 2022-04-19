@@ -9,6 +9,12 @@ interface DbApi {
     @GET("activities/home")
     fun getActivities() : Call<List<ActivityDTO>>
 
+    @POST("activities")
+    fun postActivity(@Body activity: ActivityRequest) : Call<ActivityRequest>
+
+    @GET("categories")
+    fun getCategories() : Call<List<CategoryDTO>>
+
     @POST("auth/login")
     fun login(@Body body: LoginRequest) : Call<UserDTO>
 
