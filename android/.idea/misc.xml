@@ -13,7 +13,6 @@
         <entry key="..\:/Users/tberezny/Documents/2_rocnik/letny_semester/mtaa/mtaaProjekt/android/app/src/main/res/drawable/ic_profile_black.xml" value="0.1" />
         <entry key="..\:/Users/tberezny/Documents/2_rocnik/letny_semester/mtaa/mtaaProjekt/android/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/tberezny/Documents/2_rocnik/letny_semester/mtaa/mtaaProjekt/android/app/src/main/res/layout-w936dp/activity_login.xml" value="0.140625" />
-        <entry key="..\:/Users/tberezny/Documents/2_rocnik/letny_semester/mtaa/mtaaProjekt/android/app/src/main/res/layout/activity_activity.xml" value="0.264" />
         <entry key="..\:/Users/tberezny/Documents/2_rocnik/letny_semester/mtaa/mtaaProjekt/android/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Users/tberezny/Documents/2_rocnik/letny_semester/mtaa/mtaaProjekt/android/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/tberezny/Documents/2_rocnik/letny_semester/mtaa/mtaaProjekt/android/app/src/main/res/layout/activity_register.xml" value="0.25416666666666665" />
@@ -25,8 +24,11 @@
         <entry key="..\:/Users/tberezny/Documents/2_rocnik/letny_semester/mtaa/mtaaProjekt/android/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
         <entry key="..\:/Users/tberezny/Documents/2_rocnik/letny_semester/mtaa/mtaaProjekt/android/app/src/main/res/layout/view_item.xml" value="0.536" />
         <entry key="..\:/Users/tberezny/Documents/2_rocnik/letny_semester/mtaa/mtaaProjekt/android/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
+        <entry key="..\:/mtaaProjekt/android/app/src/main/res/layout/activity_activity.xml" value="0.264" />
+        <entry key="..\:/mtaaProjekt/android/app/src/main/res/layout/activity_settings.xml" value="0.264" />
+        <entry key="..\:/mtaaProjekt/android/app/src/main/res/layout/fragment_add_activity.xml" value="0.264" />
         <entry key="..\:/mtaaProjekt/android/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
-        <entry key="..\:/mtaaProjekt/android/app/src/main/res/layout/view_item.xml" value="0.264" />
+        <entry key="..\:/mtaaProjekt/android/app/src/main/res/layout/view_item.xml" value="0.8" />
       </map>
     </option>
   </component>
