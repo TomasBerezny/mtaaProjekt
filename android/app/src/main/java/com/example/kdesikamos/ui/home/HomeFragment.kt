@@ -1,5 +1,6 @@
 package com.example.kdesikamos.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,9 +12,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kdesikamos.DbApi
+import com.example.kdesikamos.MainActivity
 import com.example.kdesikamos.adapters.RecyclerViewHome
 import com.example.kdesikamos.databinding.FragmentHomeBinding
 import com.example.kdesikamos.dto.ActivityDTO
+import com.example.kdesikamos.dto.UserDTO
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,6 +25,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 class HomeFragment : Fragment() {
+
+    companion object{
+        lateinit var clickedActivity: ActivityDTO
+    }
 
     private var _binding: FragmentHomeBinding? = null
     private lateinit var recycler : RecyclerView
@@ -98,6 +105,16 @@ class HomeFragment : Fragment() {
 
         var adapter = RecyclerViewHome(this.context, list)
 
+        val clickListener : RecyclerViewHome.ItemClickListener = object: RecyclerViewHome.ItemClickListener {
+            override fun onItemClick(view: View?, position: Int) {
+                clickedActivity = list.get(position)
+                val intent = Intent(context, ActivityActivity::class.java)
+                startActivity(intent)
+            }
+
+        }
+
+        adapter.setClickListener(clickListener)
         binding.rvHome.adapter = adapter
     }
 }
