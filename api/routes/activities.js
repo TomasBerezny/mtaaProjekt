@@ -25,7 +25,7 @@ router.get('/home', async(req, res) => {
             let user = await User.findOne({_id: activities[i].user_id});
             let category = await Category.findOne({_id: activities[i].category_id});
             response.push({
-                id:activities[i]._id,
+                _id:activities[i]._id,
                 profile_pic: user.profile_photo_path,
                 username: user.username,
                 category_name: category.name,
