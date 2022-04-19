@@ -13,6 +13,9 @@
         android:theme="@style/Theme.KdeSiKamos"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.group.GroupActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.home.ActivityActivity"
             android:exported="false" />
         <activity

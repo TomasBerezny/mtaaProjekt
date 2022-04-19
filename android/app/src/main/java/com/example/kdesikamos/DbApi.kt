@@ -18,6 +18,9 @@ interface DbApi {
     @GET("categories")
     fun getCategories() : Call<List<CategoryDTO>>
 
+    @GET("groups/user/{userId}")
+    fun getGroups(@Path("userId") userId: String) : Call<List<GroupDTO>>
+
     @POST("auth/login")
     fun login(@Body body: LoginRequest) : Call<UserDTO>
 
