@@ -19,6 +19,9 @@
             android:name=".ui.profile.CallActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.group.GroupActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.home.ActivityActivity"
             android:exported="false" />
         <activity
