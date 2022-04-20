@@ -27,6 +27,7 @@ class ProfileFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
+        val user = LoginActivity.loggedUser
         val profileViewModel =
                 ViewModelProvider(this).get(ProfileViewModel::class.java)
 
@@ -38,6 +39,16 @@ class ProfileFragment : Fragment() {
             val intent = Intent(context, SettingsActivity::class.java)
             startActivity(intent)
         }
+
+        binding.callCenterBtn.setOnClickListener{
+            val intent = Intent(context, CallActivity::class.java)
+            intent.putExtra("username",user.username)
+            startActivity(intent)
+        }
+
+
+
+
 
         return root
     }

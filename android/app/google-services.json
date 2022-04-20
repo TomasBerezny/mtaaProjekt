@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "529890898069",
+    "firebase_url": "https://webrtc-mtaa-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "webrtc-mtaa",
+    "storage_bucket": "webrtc-mtaa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:529890898069:android:15fb7aa8a2933252036b9c",
+        "android_client_info": {
+          "package_name": "com.example.kdesikamos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "529890898069-jisoarjhsli2sarjbrasrl6ch3ev7oom.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPJOsz6weqHFRiAt8e42ytCLVWPhQXEe8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "529890898069-jisoarjhsli2sarjbrasrl6ch3ev7oom.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:529890898069:android:3a8f42bd57aaa9dc036b9c",
+        "android_client_info": {
+          "package_name": "com.example.videocallapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "529890898069-jisoarjhsli2sarjbrasrl6ch3ev7oom.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPJOsz6weqHFRiAt8e42ytCLVWPhQXEe8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "529890898069-jisoarjhsli2sarjbrasrl6ch3ev7oom.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

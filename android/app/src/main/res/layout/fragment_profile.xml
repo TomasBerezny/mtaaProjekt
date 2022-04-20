@@ -139,12 +139,12 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/callCenterBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Call centrum"
         android:layout_below="@id/btnProfileSettings"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        />
+        android:text="Call center" />
 
 </RelativeLayout>
